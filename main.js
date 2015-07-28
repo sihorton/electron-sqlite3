@@ -1,21 +1,40 @@
-console.log("Starting...")
+var app = require('app');  // Module to control application life.
+var BrowserWindow = require('browser-window');  // Module to create native browser window.
 
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(':memory:');
+// Report crashes to our server.
+require('crash-reporter').start();
 
-db.serialize(function() {
-    db.run("CREATE TABLE lorem (info TEXT)");
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the javascript object is GCed.
+var mainWindow = null;
 
-      var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
-        for (var i = 0; i < 10; i++) {
-                stmt.run("Ipsum " + i);
-                  }
-          stmt.finalize();
-
-            db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
-                    console.log(row.id + ": " + row.info);
-                      });
+// Quit when all windows are closed.
+app.on('window-all-closed', function() {
+  //if (process.platform != 'darwin') {
+    app.quit();
+  //}
 });
 
-db.close();
+// This method will be called when Electron has done everything
+// initialization and ready for creating browser windows.
+app.on('ready', function() {
+  // Create the browser window.
+  mainWindow = new BrowserWindow({width: 800, height: 600});
+
+  // Open the devtools.
+  mainWindow.openDevTools();
+
+  // and load the index.html of the app.
+  mainWindow.loadUrl('file://' + __dirname + '/index.html');
+
+
+  // Emitted when the window is closed.
+  mainWindow.on('closed', function() {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    mainWindow = null;
+  });
+});
+
 

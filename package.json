@@ -5,6 +5,7 @@
   "repository": "https://github.com/bytheway/electron-sqlite3.git",
   "main": "main.js",
   "dependencies": {
+    "jquery": "^2.1.4",
     "sqlite3": "3.0.9"
   },
   "devDependencies": {
