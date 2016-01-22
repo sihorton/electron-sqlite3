@@ -6,11 +6,11 @@
   "main": "main.js",
   "dependencies": {
     "jquery": "^2.1.4",
-    "sqlite3": "3.0.9"
+    "sqlite3": "3.1.1"
   },
   "devDependencies": {
-    "electron-packager": "^5.0.1",
-    "electron-prebuilt": "^0.30.1"
+    "electron-packager": "^5.2.1",
+    "electron-prebuilt": "^0.36.4"
   },
   "keywords": [
     "electron",
@@ -22,9 +22,9 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . electron-sqlite3 --out=dist --ignore=dist --prune --asar --all --version=0.30.1",
+    "build": "electron-packager . electron-sqlite3 --out=dist --ignore=dist --prune --asar --all --version=0.36.4",
     "postinstall": "npm run rebuild-sqlite3",
-    "rebuild-sqlite3": "cd node_modules/sqlite3 && npm run prepublish && node-gyp configure --module_name=node_sqlite3 --module_path=../lib/binding/node-v44-darwin-x64 && node-gyp rebuild --target=0.30.1 --arch=x64 --target_platform=darwin --dist-url=https://atom.io/download/atom-shell --module_name=node_sqlite3 --module_path=../lib/binding/node-v44-darwin-x64"
+    "rebuild-sqlite3": "cd node_modules/sqlite3 && npm run prepublish && node-gyp configure --module_name=node_sqlite3 --module_path=../lib/binding/node-v47-darwin-x64 && node-gyp rebuild --target=0.36.4 --arch=x64 --target_platform=darwin --dist-url=https://atom.io/download/atom-shell --module_name=node_sqlite3 --module_path=../lib/binding/node-v47-darwin-x64"
   },
   "author": "Ben Bytheway",
   "contributors": [],
